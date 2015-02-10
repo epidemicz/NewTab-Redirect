@@ -156,11 +156,23 @@ div.app-icon {
     text-align: center;
     line-height: 1.2em;
     font-size: 0.6em;
+
+}
+
+div.app-icon a:hover {
+  -webkit-transform-origin: center;
+  -webkit-transform: scale(1.1);
+}
+
+div.app-icon a:active {
+  -webkit-transform-origin: center;
+  -webkit-transform: scale(1.05);
 }
 
 .app-logo a,
 div.app-icon a {
     color: rgba(0,0,0,0.7);
+      -webkit-transform: scale(1.0);
     text-decoration: none;
 }
 
@@ -191,6 +203,7 @@ span.app-desc {
     display: block;
     white-space: pre-wrap;
     text-decoration: none;
+    font-size: 12px;
 }
 
 div.main-container {
@@ -203,10 +216,11 @@ div.container {
 }
 
 div.app-container {
-    margin-top:35px;
+    margin-top:100px;
     padding-bottom:40px;
     opacity:0;
     max-height:0;
+    width:70%;
 }
 
 /*undo the app-container stuff*/

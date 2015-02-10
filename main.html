@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>New Tab Redirect</title>
+    <title>New Tab</title>
     <script type="text/javascript" src="js/defer_bootstrap.js"></script>
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/common.css" type="text/css">
@@ -13,8 +13,9 @@
 <div ng-cloak>
     <div class="main-container" ng-controller="MainController">
 
-        <span id="app-prefs"><a href="#" class="plain" ng-click="show_prefs=true"><i class="fa fa-gears"></i></a></span>
+        <span id="app-prefs"><a href="options.html" class="plain" ng-click="show_prefs=true"><i class="fa fa-gears"></i></a></span>
 
+        <!--
         <div class="dialog" ng-show="show_prefs">
             <div class="content">
                 <h2>Display Preferences</h2>
@@ -43,15 +44,11 @@
                     <h3><i class="fa fa-external-link"></i> Open apps in New Window</h3>
                     <toggle-permission permission="tabs" granted="permissions.tabs"></toggle-permission>
                 </div>
-
+                <a href="options.html"><small>Options</a>
                 <button ng-click="save_preferences()" class="pull-right">Close</button>
             </div>
         </div>
-
-        <div class="app-header">
-            <span class="app-logo"><a href="options.html" target="_self"><i class="fa">&nbsp;</i> {{extension_name}}</a></span>
-            <span class="webstore"><a href="https://chrome.google.com/webstore" target="_self" class="plain"><i class="fa" style="background:url('chrome://favicon/https://chrome.google.com/webstore/category/apps') no-repeat;"></i> Chrome Web Store</a></span>
-        </div>
+        -->
 
         <div class="container bookmarks-container" ng-show="permissions.bookmarks && enable_bookmarks && bookmarks.length > 0" ng-class="{'populated':bookmarks.length > 0}">
             <a class="bookmark" ng-if="enable_bookmarks" ng-repeat="b in bookmarks" href="{{b.url}}" title="{{b.title}}" target="_self">
@@ -60,14 +57,26 @@
             </a>
         </div>
 
-        <div ng-show="permissions.management" class="container app-container clear" ng-class="{'after-bookmarks': enable_bookmarks && bookmarks.length > 0,'populated':apps.length > 0}">
-            <div><input type="search" ng-model="q.name" ng-show="apps.length > 5" placeholder="Filter apps"></div>
+        <div ng-show="permissions.management" 
+            class="container app-container clear" 
+            ng-class="{'after-bookmarks': enable_bookmarks && bookmarks.length > 0,'populated':apps.length > 0}">
+            <!--<div><input type="search" ng-model="q.name" ng-show="apps.length > 5" placeholder="Filter apps"></div>-->
+            <div class="app-icon" ng-repeat="app in extra_apps" >
+                <a href="{{app.url}}" class="app-icon-128"
+                    ng-class="{webpage: app.icons[0].size == 16 && app.icons[1] == undefined }">
+                    <img ng-src="{{app.icon}}" title="{{app.name}}"/>
+                    <span class="app-desc">{{app.name}}</span>
+                </a>
+            </div>
+            
             <chrome-app ng-repeat="app in (apps | filter:q)" app="app" permissions="permissions"></chrome-app>
             <div ng-show="(apps | filter:q).length == 0" style="margin:1.5em">No matches found.</div>
+
             <span class="clear"></span>
         </div>
 
-        <div ng-if="!permissions.management" class="container app-container no-app-permissions"
+        <div ng-if="!permissions.management"
+             class="container app-container no-app-permissions"
              ng-class="{'after-bookmarks': enable_bookmarks && bookmarks.length > 0, 'populated': permissions.management == false}">
             <h3>Hello.</h3>
             <p>

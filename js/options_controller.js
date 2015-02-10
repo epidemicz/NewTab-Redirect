@@ -19,6 +19,11 @@ controllers.controller('OptionsController', ['$scope', 'Storage', 'Permissions',
                 .then(function(result){
                     $scope.url = result.url;
                     $scope.alwaysTabUpdate = result['always-tab-update'];
+
+                    return Storage[$scope.sync ? 'getSync' : 'getLocal']('myvalue');
+                })
+                .then(function(result){
+                    $scope.myvalue = result['myvalue'];
                 });
         }
 
@@ -29,8 +34,20 @@ controllers.controller('OptionsController', ['$scope', 'Storage', 'Permissions',
                 });
         }
 
+        $scope.test_me = function(){
+            var promise = Storage[$scope.sync? 'saveSync' : 'saveLocal']({
+                'myvalue': $scope.myvalue
+            });
+            promise.then(function(){
+                $scope.show_saved = true;
+                $timeout(function(){
+                    $scope.show_saved = false;
+                }, 3500);
+            });
+        };
+
         $scope.save = function(){
-            var promise =  Storage[$scope.sync?'saveSync':'saveLocal']({
+            var promise = Storage[$scope.sync?'saveSync':'saveLocal']({
                 'url':$scope.url,
                 'always-tab-update': $scope.alwaysTabUpdate
             }) ;

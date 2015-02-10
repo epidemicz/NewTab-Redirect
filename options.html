@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>New Tab Redirect</title>
+    <title>Vanilla Apps New Tab Page Options</title>
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/common.css" type="text/css">
     <link rel="stylesheet" href="css/options.css" type="text/css">
@@ -13,7 +13,7 @@
     <div class="main-container" ng-controller="OptionsController">
 
         <div class="app-header">
-            <span class="app-logo"><a href="options.html" target="_self"><i class="fa">&nbsp;</i> New Tab Redirect Options</a></span>
+            <span class="app-logo"><a href="options.html" target="_self"><i class="fa">&nbsp;</i> Vanilla Apps New Tab Page Options</a></span>
             <span class="webstore"><a href="https://chrome.google.com/webstore" target="_self" class="plain"><i class="fa" style="background:url('chrome://favicon/https://chrome.google.com/webstore/category/apps') no-repeat;"></i> <x data-role="store">Chrome Web Store</x></a></span>
         </div>
 
@@ -23,6 +23,7 @@
                 <li ng-class="{'selected': selected === 'permissions'}"><a ng-click="selected='permissions'">Permissions</a></li>
                 <li ng-class="{'selected': selected === 'contact'}"><a ng-click="selected='contact'">Contact</a></li>
                 <li ng-class="{'selected': selected === 'donate'}"><a ng-click="selected='donate'">Donate</a></li>
+                <li ng-class="{'selected': selected === 'test'}"><a ng-click="selected='test'">Test?</a></li>
             </ul>
             <div class="target">
                 <div ng-show="selected=='url'">
@@ -162,7 +163,10 @@
 
                     <p>You're welcome to <a href="mailto:james.schubert@gmail.com">email me</a> or chat with me on Google (james.schubert@gmail.com).
                     </p>
-
+                </div>
+                <div ng-show="selected=='test'">
+                    <input type="text" ng-model="myvalue" placeholder="test?" />
+                    <button ng-click="test_me()">test</button>
                 </div>
             </div>
             <span class="clear"></span>

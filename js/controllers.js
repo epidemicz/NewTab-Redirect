@@ -2,7 +2,7 @@
 var controllers = angular.module('newTab.controllers', ['newTab.services']);
 
 controllers.controller('MainController', ['$scope', 'Apps', 'Permissions', '$log',
-    function ($scope, Apps, Permissions, $log){
+    function ($scope, Apps, Permissions, $log) {
     var enable_top_key = 'ntr.enable_top',
         enable_bookmarks_key = 'ntr.enable_bookmarks',
         bookmarks_count_key = 'ntr.bookmark_count',
@@ -15,6 +15,24 @@ controllers.controller('MainController', ['$scope', 'Apps', 'Permissions', '$log
     $scope.show_prefs = false;
     $scope.bookmark_count = 10;
     $scope.top_count = 10;
+
+    $scope.extra_apps = [
+        {
+        	'name': 'Reddit',
+        	'url': 'http://www.reddit.com/',
+        	'icon': '/images/reddit.png'
+        },
+        {
+            'name': 'wotrax.com',
+            'url': 'http://www.wotrax.com/',
+            'icon': '/images/globe.png'
+        },
+        {
+            'name': 'Google Translate',
+            'url': 'https://translate.google.com/',
+            'icon': '/images/gtranslate.png'
+        }
+        ];
 
     $scope.save_preferences = function(){
         $scope.show_prefs=false;
