@@ -25,12 +25,17 @@ controllers.controller('MainController', ['$scope', 'Apps', 'Permissions', '$log
         {
             'name': 'wotrax.com',
             'url': 'http://www.wotrax.com/',
-            'icon': '/images/globe.png'
+            'icon': '/images/wotrax.svg'
         },
         {
             'name': 'Google Translate',
             'url': 'https://translate.google.com/',
             'icon': '/images/gtranslate.png'
+        },
+        {
+            'name': 'Bing',
+            'url': 'http://www.bing.com/',
+            'icon': '/images/bing.svg'
         }
         ];
 
